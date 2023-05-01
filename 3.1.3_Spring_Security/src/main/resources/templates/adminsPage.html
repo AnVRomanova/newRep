@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Hello World!</title>
+</head>
+<body>
+<h1 th:inline="text">Hello ADMIN !!!</h1>
+<form th:action="@{/logout}" method="post">
+  <input type="submit" value="Sign Out"/>
+</form>
+
+<div>
+  <table border="1">
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Last Name</td>
+      <td>email</td>
+
+    </tr>
+    <th:block th:each="u : ${userList}">
+      <br>
+      <tr>
+
+        <td th:text="${u.getId()}"></td>
+        <td th:text="${u.getName()}"></td>
+        <td th:text="${u.getLastName()}"></td>
+        <td th:text="${u.getEmail()}"></td>
+
+        <td>
+          <a th:href="@{/only_for_admins/{id}/edit(id=${u.getId()})}">edit</a>
+          <form th:method="DELETE" th:action="@{/only_for_admins/{id}(id=${u.id})} ">
+            <input type="submit" value="Delete user">
+          </form>
+
+
+
+        </td>
+      </tr>
+      </br>
+
+    </th:block>
+  </table>
+  <br></br>
+
+  <a th:href="@{/only_for_admins/add}">Add new user</a>
+</div>
+
+</body>
+</html>

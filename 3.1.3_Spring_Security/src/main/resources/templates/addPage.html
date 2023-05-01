@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Add</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+  <input type="submit" value="Sign Out"/>
+</form>
+<form th:method="POST" th:action="@{/only_for_admins/add}"  th:object="${user}">
+
+
+  <label for="name">Name</label>
+  <input th:field="*{name}" type="text" name="name" id="name">
+
+  <label for="password">password</label>
+  <input th:field="*{password}" type="text" name="password" id="password">
+
+  <label for="active">active</label>
+  <input th:field="*{active}" type="text" name="active" id="active">
+
+  <label for="lastName">lastName</label>
+  <input th:field="*{lastName}" type="text" name="lastName" id="lastName">
+
+  <label for="email">email</label>
+  <input th:field="*{email}" type="text" name="email" id="email">
+  <p>
+    <label>Roles:
+      <input type="checkbox" name="authorities"
+             th:each="role : ${allRoles}"
+             th:text="${role.name}"
+             th:value="${role.id}"
+             th:checked="${user.roles.contains(role)}"
+      />
+    </label>
+  </p>
+
+
+
+  <input type="submit" value="Add user">
+
+</form>
+
+</body>
+</html>
