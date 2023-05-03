@@ -5,11 +5,11 @@ import com.example31._Spring_Security.model.Role;
 import com.example31._Spring_Security.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
-@Transactional
+
 @Service
 public class RoleService implements RoleServiceInterface {
 
@@ -29,4 +29,6 @@ public class RoleService implements RoleServiceInterface {
     public Role readRole(Long id) {
         return roleRepository.getOne(id);
     }
+
+
 }

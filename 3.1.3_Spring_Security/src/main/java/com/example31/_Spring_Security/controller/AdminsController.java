@@ -26,11 +26,16 @@ import java.util.List;
 @RequestMapping("/")
 public class AdminsController {
 
-    @Autowired
-    private UserService service;
+    private final UserService service;
+
+    private final RoleService roleService;
 
     @Autowired
-    private RoleService roleService;
+    public AdminsController(UserService service, RoleService roleService ) {
+        this.service = service;
+        this.roleService = roleService;
+
+    }
 
 
     @GetMapping

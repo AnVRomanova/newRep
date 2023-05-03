@@ -5,7 +5,7 @@ import com.example31._Spring_Security.model.Role;
 import com.example31._Spring_Security.model.User;
 import com.example31._Spring_Security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +18,10 @@ public class UserService implements UserServiceInterface {
 
     private final UserRepository userRepository;
     private final RoleService roleService;
-    private PasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleService roleService, PasswordEncoder encoder) {
+    public UserService(UserRepository userRepository, RoleService roleService, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.encoder = encoder;
